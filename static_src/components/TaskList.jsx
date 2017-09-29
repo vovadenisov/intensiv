@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
 
 import Task from './Task';
 
@@ -9,6 +11,10 @@ class TaskList extends React.Component {
         isLoading: PropTypes.bool,
         taskList: PropTypes.arrayOf(PropTypes.shape(Task.propTypes)),
     }
+
+    static contextTypes = {
+        store: PropTypes.object,
+    };
 
     static defaultProps = {
         taskList: [],
@@ -32,3 +38,20 @@ class TaskList extends React.Component {
 }
 
 export default TaskList;
+
+
+// const mapStateToProps = state => ({
+//     currentPage: state.router.currentPage,
+// });
+
+
+// const mapDispatchToProps = dispatch => ({
+//     ...bindActionCreators({ selectPage }, dispatch),
+//     // selectPage: currentPage => dispatch(selectPage(currentPage)),
+// });
+
+
+// export default connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+// )(App);

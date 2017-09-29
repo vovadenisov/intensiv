@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TASK_TEXT = 'In applications with many components, its very important to free up resources taken by the components when they are destroyed.';
+import User from './User';
 
 
 class Task extends React.Component {
     static propTypes = {
-        author: PropTypes.shape({
-            avatar: PropTypes.string,
-            first_name: PropTypes.string,
-        }).isRequired,
+        author: PropTypes.shape(User.propTypes).isRequired,
         text: PropTypes.string,
     }
 
@@ -18,18 +15,14 @@ class Task extends React.Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <div className="b-task">
-                <div className="b-task__title">
-                    <img
-                        className="b-avatar"
-                        width="40px"
-                        height="40px"
-                        src={ this.props.author.avatar }
-                        
-                    />
-                    <div className="b-user-name">{ this.props.author.first_name }</div>
-                </div>
+                <User
+                    id={ this.props.author.id }
+                    avatar={ this.props.author.avatar }
+                    first_name={ this.props.author.first_name }
+                />
                 <div className="b-task__content">{ this.props.text }</div>
             </div>
         );
