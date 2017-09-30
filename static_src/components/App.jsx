@@ -1,8 +1,7 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
-import apiUrls from './../constants/apiUrls';
 import './../styles/base.scss';
 
 
@@ -11,17 +10,6 @@ class App extends React.Component {
         taskList: [],
         isLoading: false,
     };
-
-    componentDidMount() {
-        this.setState({ isLoading: true });
-        fetch(apiUrls.task, {
-            credentials: 'include',
-        }).then(
-            body => body.json(),
-        ).then(
-            json => this.setState({ taskList: json.results, isLoading: false }),
-        );
-    }
 
     onTaskCreate = (task) => {
         this.setState({
@@ -32,19 +20,21 @@ class App extends React.Component {
     render() {
         return (
             <div className="b-wrapper">
+                <Link to="/create/">Создать</Link>
+                <Link to="/tasklist/">Список</Link>
                 <h1>TaskTracker</h1>
-                <TaskForm onCreate={ this.onTaskCreate } />
-                <TaskList isLoading={ this.state.isLoading } taskList={ this.state.taskList } />
+                <Switch>
+                    <Route exact path="/" component={ () => <h2>jhdfbg</h2> } />
+                    <Route
+                        exact
+                        path="/create/"
+                        render={ props => <TaskForm { ...props } onCreate={ this.onTaskCreate } /> }
+                    />
+                    <Route exact path="/tasklist/" component={ TaskList } />
+                </Switch>
             </div>
         );
     }
 }
 
 export default App;
-
-
-{/* <Switch>
-    <Route exact path="/" component={ () => <h1>TaskTracker</h1> } />
-    <Route exact path="/create/" render={(props) => <TaskForm { ...props } onCreate={ this.onTaskCreate } />} />
-    <Route exact path="/tasklist/" render={(props) => <TaskList { ...props } isLoading={ this.state.isLoading } taskList={ this.state.taskList } />} />
-</Switch> */}

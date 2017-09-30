@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 
 class User extends React.Component {
     static propTypes = {
         id: PropTypes.number.isRequired,
         avatar: PropTypes.string,
-        first_name: PropTypes.string.isRequired,
+        first_name: PropTypes.string,
     }
 
     static defaultProps = {
         avatar: '',
+        first_name: '',
     }
 
     render() {
@@ -29,4 +31,12 @@ class User extends React.Component {
     }
 }
 
-export default User;
+const mapStateToProps = ({ users }, ownProps) => {
+    return {
+        ...users.users[ownProps.id],
+    };
+};
+
+const mapDispatchToProps = () => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(User);

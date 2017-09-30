@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { loadTasks } from './../actions/tasks';
+import apiUrls from './../constants/apiUrls';
 
 import Task from './Task';
 
@@ -9,16 +11,17 @@ import Task from './Task';
 class TaskList extends React.Component {
     static propTypes = {
         isLoading: PropTypes.bool,
-        taskList: PropTypes.arrayOf(PropTypes.shape(Task.propTypes)),
+        taskList: PropTypes.arrayOf(PropTypes.number),
+        loadTasks: PropTypes.func.isRequired,
     }
-
-    static contextTypes = {
-        store: PropTypes.object,
-    };
 
     static defaultProps = {
         taskList: [],
         isLoading: false,
+    }
+
+    componentDidMount() {
+        this.props.loadTasks(apiUrls.task);
     }
 
     render() {
@@ -27,7 +30,7 @@ class TaskList extends React.Component {
         }
 
         const tasks = this.props.taskList.map(
-            item => <Task key={ item.id } author={ item.author } text={ item.text } />,
+            item => <Task key={ item } id={ item } />,
         );
         return (
             <div className="b-task-list">
@@ -37,21 +40,17 @@ class TaskList extends React.Component {
     }
 }
 
-export default TaskList;
+
+const mapStateToProps = ({ tasks }) => {
+    return {
+        taskList: tasks.taskList,
+        isLoading: tasks.isLoading,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ loadTasks }, dispatch)
+}
 
 
-// const mapStateToProps = state => ({
-//     currentPage: state.router.currentPage,
-// });
-
-
-// const mapDispatchToProps = dispatch => ({
-//     ...bindActionCreators({ selectPage }, dispatch),
-//     // selectPage: currentPage => dispatch(selectPage(currentPage)),
-// });
-
-
-// export default connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-// )(App);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskList);

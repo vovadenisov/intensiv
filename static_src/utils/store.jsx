@@ -8,7 +8,11 @@ function initStore(additionalMiddlewares = []) {
     return createStore(
         initReducers,
         innitialStore,
-        compose(applyMiddleware(...additionalMiddlewares, ...middlewares), window.__REDUX_DEVTOOLS_EXTENSION__()));
+        compose(
+            applyMiddleware(...additionalMiddlewares, ...middlewares),
+            window.__REDUX_DEVTOOLS_EXTENSION__(),
+        ),
+    );
 }
 
 export default initStore;
