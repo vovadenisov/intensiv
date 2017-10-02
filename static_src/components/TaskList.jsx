@@ -10,14 +10,25 @@ import Task from './Task';
 
 class TaskList extends React.Component {
     static propTypes = {
+        server: PropTypes.bool,
         isLoading: PropTypes.bool,
         taskList: PropTypes.arrayOf(PropTypes.number),
         loadTasks: PropTypes.func.isRequired,
+        resultServer: PropTypes.func,
     }
 
     static defaultProps = {
         taskList: [],
         isLoading: false,
+        server: false,
+        resultServer: () => {}
+    }
+
+    constructor(props){
+        super(props);
+        if(props.server){
+            this.props.loadTasks(apiUrls.task).then(() => {props.resultServer()});
+        }
     }
 
     componentDidMount() {

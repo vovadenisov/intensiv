@@ -14,6 +14,7 @@ export const loadTasks = (url) => {
             credentials: 'include',
             endpoint: url,
             method: 'GET',
+            headers: { 'Authorization': 'token 61901adf9618efbcfefcc35e66bd6d2415699971' },
             types: [
                 START_TASK_LOADING,
                 {

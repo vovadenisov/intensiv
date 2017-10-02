@@ -1,3 +1,6 @@
 old_examples
 node_modules
 static/build
+static/server
+.idea
+yarn.lock
