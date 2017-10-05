@@ -18,7 +18,9 @@ export class Login extends React.Component {
         const data = new FormData();
         data.append('username', this.state.username);
         data.append('password', this.state.password);
-        fetch('/api/token-auth/', {method: 'POST', body: data}).then((data) => {
+        fetch('/api/token-auth/', {
+            method: 'POST', body: data, credentials: 'same-origin'
+        }).then((data) => {
             console.log(data);
             if (data.status >= 200 && data.status < 300){
                 return data.json()

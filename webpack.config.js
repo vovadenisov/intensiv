@@ -2,7 +2,7 @@ const webpack = require('webpack');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
-const URL = 'http://intensive.com/';
+const URL = 'http://intensiv.com/';
 
 module.exports = {
     entry: {

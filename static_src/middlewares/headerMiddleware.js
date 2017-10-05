@@ -1,6 +1,6 @@
 import { isRSAA, CALL_API } from 'redux-api-middleware';
 
-// создаем функцию принимающую токе и возвращающую мидлварь, что бы добавлять Authorisation хедер к нащим
+// создаем функцию принимающую токе и возвращающую мидлварь, что бы добавлять Authorization хедер к нащим
 // запросам от сервера
 export const headerMiddleware = token => store => next => (action) => {
     if (isRSAA(action)){
