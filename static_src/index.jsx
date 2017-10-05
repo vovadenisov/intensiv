@@ -10,7 +10,7 @@ import initStore from './utils/store';
 const history = createHistory();
 const middleware = routerMiddleware(history);
 
-ReactDOM.render(
+ReactDOM.hydrate(
     <Provider store={ initStore([middleware]) }>
         <ConnectedRouter history={ history }>
             <App />

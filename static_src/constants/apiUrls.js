@@ -1,3 +1,3 @@
 export default {
-    task: 'http://intensiv.com/api/tasks/',
+    task: SERVER_URL + 'api/tasks/',
 };

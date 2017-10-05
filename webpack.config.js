@@ -2,11 +2,11 @@ const webpack = require('webpack');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
+const URL = 'http://intensive.com/';
+
 module.exports = {
     entry: {
-        testBundle: './test',
         indexBundle: './index',
-        testRedux: './testRedux',
     },
     context: `${__dirname}/static_src`,
     output: {
@@ -17,6 +17,10 @@ module.exports = {
     },
 
     plugins: [
+        new webpack.DefinePlugin({
+            SERVER: false,
+            SERVER_URL: JSON.stringify(URL),
+        }),
         new webpack.NoEmitOnErrorsPlugin(),
     ],
 
@@ -25,6 +29,7 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 include: `${__dirname}/static_src`,
+                //include: `${__dirname}/test_server`,
                 loader: 'babel-loader?presets[]=react&presets[]=env&presets[]=stage-1',
             },
             {

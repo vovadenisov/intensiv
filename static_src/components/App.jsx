@@ -1,26 +1,35 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
 import PropTypes from 'prop-types';
-import './../styles/base.scss';
+import { connect } from 'react-redux';
+import { serverFlag } from './../actions/serverFlag';
+import { withRouter } from 'react-router'
+import { Login } from './Login.jsx';
+import '../styles/base.scss';
 
 
 class App extends React.Component {
     static propTypes = {
         server: PropTypes.bool,
-        resultServer: PropTypes.func,
+        addToPromises: PropTypes.func,
     };
 
     static defaultProps = {
         server: false,
-        resultServer: () => {},
+        addToPromises: () => {},
     };
 
     state = {
         taskList: [],
         isLoading: false,
     };
+
+    componentDidMount(){
+        this.props.serverFlag()
+    }
 
     onTaskCreate = (task) => {
         this.setState({
@@ -50,11 +59,16 @@ class App extends React.Component {
                     />
                     <Route
                         exact
+                        path="/login/"
+                        render={ props => <Login { ...props } /> }
+                    />
+                    <Route
+                        exact
                         path="/tasklist/"
                         render={ props => <TaskList
                             { ...props }
                             server={ this.props.server }
-                            resultServer={ this.props.resultServer }
+                            addToPromises={ this.props.addToPromises }
                         />} />
                 </Switch>
             </div>
@@ -62,4 +76,9 @@ class App extends React.Component {
     }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ serverFlag }, dispatch)
+}
+
+
+export default withRouter(connect(() => ({}), mapDispatchToProps)(App));

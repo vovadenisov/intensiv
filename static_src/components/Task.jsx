@@ -25,8 +25,8 @@ class Task extends React.Component {
         return (
             <div className="b-task">
                 <User id={ this.props.author } />
-                <div className="b-task__content">{ this.props.text }</div>
-                <div className="b-task__content">{ this.props.description }</div>
+                <div className='b-task-content'>{ this.props.text }</div>
+                <div className='b-task-content'>{ this.props.description }</div>
             </div>
         );
     }

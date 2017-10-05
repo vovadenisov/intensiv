@@ -6,9 +6,9 @@
   "scripts": {
     "start": "webpack",
     "build": "NODE_ENV=prod webpack",
-    "server-create": "babel-node -- server/index.js",
     "server-build": "webpack --config webpack.server-config.js",
-    "server-run": "node static/server/serverBundle.js"
+    "server-run": "nodemon static/server/serverBundle.js",
+    "test-server-run": "nodemon static/server/testServerBundle.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.16.0",
     "babel-preset-stage-1": "^6.24.1",
+    "cookie-parser": "^1.4.3",
     "css-loader": "^0.28.7",
     "es6-promise": "^4.1.1",
     "eslint": "^4.7.2",
@@ -34,18 +35,24 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
     "express": "^4.14.0",
+    "express-http-proxy": "^1.0.7",
     "file-loader": "^0.11.2",
     "history": "^4.7.2",
     "isomorphic-fetch": "^2.2.1",
+    "isomorphic-style-loader": "^4.0.0",
+    "node-http-proxy-json": "^0.1.5",
     "node-sass": "^4.5.3",
     "node-static": "^0.7.10",
+    "nodemon": "^1.12.1",
     "normalizr": "^3.2.3",
+    "postcss-loader": "^2.0.6",
     "prop-types": "^15.5.10",
-    "react": "^15.6.1",
+    "react": "^16.0.0",
     "react-addons-update": "^15.6.2",
-    "react-dom": "^15.6.1",
+    "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
+    "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "next",
     "redux": "^3.7.2",
@@ -57,6 +64,7 @@
     "webpack-node-externals": "^1.6.0"
   },
   "devDependencies": {
+    "http-proxy-middleware": "^0.17.4",
     "ignore-loader": "^0.1.2",
     "ignore-styles": "^5.0.1"
   }

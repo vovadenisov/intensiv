@@ -6,7 +6,6 @@ export default ({ body, title, store }) => {
         <title>${title}</title>
         <script>
           window.__REDUX__SERVER__STORE__ = '${store}'
-          window.__SERVER__RENDERING__ = true;
           </script>
       </head>
       <body>

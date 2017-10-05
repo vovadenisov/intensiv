@@ -20,7 +20,7 @@ h1 {
     width: 300px;
 }
 
-.b-task__title {
+.b-task-ttitle {
     display: flex;
     align-items: center;
 }
@@ -36,12 +36,12 @@ h1 {
     margin-left: 10px;
 }
 
-.b-task__content {
+.b-task-content {
     margin: 20px 0;
     margin-top: 0;
 }
 
-.b-modal_container {
+.b-modal-container {
     position: fixed;
     top: 0;
     right: 0;

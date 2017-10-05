@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { loadTasks } from './../actions/tasks';
 import apiUrls from './../constants/apiUrls';
-
 import Task from './Task';
 
 
@@ -14,25 +13,31 @@ class TaskList extends React.Component {
         isLoading: PropTypes.bool,
         taskList: PropTypes.arrayOf(PropTypes.number),
         loadTasks: PropTypes.func.isRequired,
-        resultServer: PropTypes.func,
+        addToPromises: PropTypes.func,
     }
 
     static defaultProps = {
         taskList: [],
         isLoading: false,
         server: false,
-        resultServer: () => {}
+        addToPromises: () => {}
     }
 
     constructor(props){
         super(props);
-        if(props.server){
-            this.props.loadTasks(apiUrls.task).then(() => {props.resultServer()});
+        if( SERVER ){
+            this.props.addToPromises(this.props.loadTasks(apiUrls.task));
         }
     }
 
     componentDidMount() {
-        this.props.loadTasks(apiUrls.task);
+        if (!this.props.isServerRendering){
+            this.props.loadTasks(apiUrls.task);
+        }
+    }
+
+    static staticRender(store){
+        store.dispatch(loadTasks(apiUrls.task))
     }
 
     render() {
@@ -52,10 +57,11 @@ class TaskList extends React.Component {
 }
 
 
-const mapStateToProps = ({ tasks }) => {
+const mapStateToProps = (store) => {
     return {
-        taskList: tasks.taskList,
-        isLoading: tasks.isLoading,
+        isServerRendering: store.SSR.serverRendering,
+        taskList: store.tasks.taskList,
+        isLoading: store.tasks.isLoading,
     }
 }
 
@@ -64,4 +70,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskList);;
+
