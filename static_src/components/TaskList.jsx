@@ -7,7 +7,13 @@ import apiUrls from './../constants/apiUrls';
 import Task from './Task';
 
 
-class TaskList extends React.Component {
+export class Hi extends React.Component {
+    render(){
+        return(<div className="custom-class">Привет</div>)
+    }
+}
+
+export class TaskList extends React.Component {
     static propTypes = {
         server: PropTypes.bool,
         isLoading: PropTypes.bool,
@@ -25,7 +31,7 @@ class TaskList extends React.Component {
 
     constructor(props){
         super(props);
-        if( SERVER ){
+        if( typeof SERVER !== 'undefined' && SERVER){
             this.props.addToPromises(this.props.loadTasks(apiUrls.task));
         }
     }
@@ -34,6 +40,7 @@ class TaskList extends React.Component {
         if (!this.props.isServerRendering){
             this.props.loadTasks(apiUrls.task);
         }
+        console.log('is loading');
     }
 
     static staticRender(store){
@@ -42,7 +49,7 @@ class TaskList extends React.Component {
 
     render() {
         if (this.props.isLoading) {
-            return <div className="b-task-list">Загрузка...</div>;
+            return <div className="b-task-list"><Hi /></div>;
         }
 
         const tasks = this.props.taskList.map(

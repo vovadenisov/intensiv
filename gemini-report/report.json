@@ -1,0 +1,66 @@
+{
+  "skips": [],
+  "suites": [
+    {
+      "name": "intensiv",
+      "suitePath": [
+        "intensiv"
+      ],
+      "children": [
+        {
+          "name": "clear",
+          "suitePath": [
+            "intensiv",
+            "clear"
+          ],
+          "browsers": [
+            {
+              "name": "chrome",
+              "result": {
+                "suiteUrl": "http://82.202.204.12/create/",
+                "name": "chrome",
+                "metaInfo": "{\n    \"url\": \"/create\",\n    \"file\": \"gemini/test.gemini.js\",\n    \"sessionId\": \"a1a325c1a33c77c656cf37b23cc4b9d0\"\n}",
+                "fail": true,
+                "actualPath": "images/intensiv/clear/chrome~current.png",
+                "expectedPath": "images/intensiv/clear/chrome~ref.png",
+                "diffPath": "images/intensiv/clear/chrome~diff.png"
+              },
+              "retries": []
+            }
+          ]
+        },
+        {
+          "name": "add text",
+          "suitePath": [
+            "intensiv",
+            "add text"
+          ],
+          "browsers": [
+            {
+              "name": "chrome",
+              "result": {
+                "suiteUrl": "http://82.202.204.12/create/",
+                "name": "chrome",
+                "metaInfo": "{\n    \"url\": \"/create\",\n    \"file\": \"gemini/test.gemini.js\",\n    \"sessionId\": \"a1a325c1a33c77c656cf37b23cc4b9d0\"\n}",
+                "fail": true,
+                "actualPath": "images/intensiv/add text/chrome~current.png",
+                "expectedPath": "images/intensiv/add text/chrome~ref.png",
+                "diffPath": "images/intensiv/add text/chrome~diff.png"
+              },
+              "retries": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errorsOnly": false,
+  "baseHost": "",
+  "total": 2,
+  "updated": 0,
+  "passed": 0,
+  "failed": 2,
+  "skipped": 0,
+  "warned": 0,
+  "retries": 0
+}

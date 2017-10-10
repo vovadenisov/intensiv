@@ -1,17 +1,7 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 
 class ModalComponent extends React.Component {
-    static propTypes = {
-        isOpen: React.PropTypes.bool,
-        onClose: React.PropTypes.func,
-    }
-
-    static defaultProps = {
-        isOpen: false,
-        onClose: () => {},
-    }
-
     render() {
         if (!this.props.isOpen) {
             return null;
@@ -25,6 +15,16 @@ class ModalComponent extends React.Component {
             </div>
         );
     }
+}
+
+ModalComponent.propTypes = {
+        isOpen: PropTypes.bool,
+        onClose: PropTypes.func,
+    }
+
+ModalComponent.defaultProps = {
+    isOpen: false,
+    onClose: () => {},
 }
 
 export default ModalComponent;

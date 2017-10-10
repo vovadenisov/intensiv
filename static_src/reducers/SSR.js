@@ -11,7 +11,7 @@ const initialState = {
 
 export default function SSR(store = initialState, action) {
     let newStore = store;
-    if ( SERVER ){
+    if ( typeof SERVER != 'undefined' && SERVER){
         newStore = {
             serverRendering: true,
         }

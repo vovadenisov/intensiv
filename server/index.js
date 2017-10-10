@@ -40,7 +40,10 @@ app.all('/api/*' ,(req, res, next) => {
 
 app.all('/api/*', expressproxy(apiURL))
 
+app.use('/static/', express.static('static'));
+
 app.get('*', (req, res) => {
+    console.log(req.url);
     const store = initStore([headerMiddleware(req.cookies.token)]);
     const context = {};
     const resultServer = (value) => {
